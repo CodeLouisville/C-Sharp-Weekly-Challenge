@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace CodeLou.CSharp.Week2.Challenge
 {
@@ -28,39 +29,49 @@ namespace CodeLou.CSharp.Week2.Challenge
             // Hint: You should use another method of the Console class and store the output into a
             //       variable to use later.
 
-             Int32.TryParse(Console.ReadLine(), out secondsBeforeLiftOff);
 
-            // Task 4:
-            // Write a condition to test whether the number that they entered is less than or equal to zero.
-            // Call the IsLessThanOrEqualToZero() method below, passing the user's number as a parameter.
-            // If the result is true, write "Please enter a positive number." to the console.
-            // Hint: The input that you captured is currently a string type. You will have to "parse" it
-            //       as a different type in order to pass it to the IsLessThanOrEqualToZero function.
-            if (IsLessThanOrEqualToZero(secondsBeforeLiftOff))
+            while (!(Int32.TryParse(Console.ReadLine(), out secondsBeforeLiftOff)))
             {
-                Console.WriteLine("Please enter a positive number");
+
+                Console.WriteLine("Sorry you entered a string");
+                Console.Write("Enter the number of seconds you would like to count down from: ");
+
             }
 
-            // Task 5:
-            // Add an "else" block to the condition from Task 4. This should be run in the case that the
-            // number is greater than zero. Write each number to the console, counting backwards, from the 
-            // user's number to zero. Then write, "LIFTOFF!".
-            // Hint: You can accomplish this with one of several kinds of loops, including "while" and
-            //       "for". You can choose whichever you'd like to solve the task. The Microsoft
-            //       Developer Network (MSDN) website contains all of the documentation for C#. If you want
-            //       to learn more about loops, visit https://msdn.microsoft.com/en-us/library/32dbftby.aspx.
-            else
-            {
-                while (secondsBeforeLiftOff > -1)
+           
+            //int secondBeforeLiftOff = Convert.ToInt32(Console.ReadLine());
+
+                // Task 4:
+                // Write a condition to test whether the number that they entered is less than or equal to zero.
+                // Call the IsLessThanOrEqualToZero() method below, passing the user's number as a parameter.
+                // If the result is true, write "Please enter a positive number." to the console.
+                // Hint: The input that you captured is currently a string type. You will have to "parse" it
+                //       as a different type in order to pass it to the IsLessThanOrEqualToZero function.
+                if (IsLessThanOrEqualToZero(secondsBeforeLiftOff))
                 {
-                    Console.WriteLine(secondsBeforeLiftOff + "...");
-                    secondsBeforeLiftOff-=1;
+                    Console.WriteLine("Please enter a positive number: ");
                 }
-                Console.WriteLine("LIFTOFF!");
 
-            }
+                // Task 5:
+                // Add an "else" block to the condition from Task 4. This should be run in the case that the
+                // number is greater than zero. Write each number to the console, counting backwards, from the 
+                // user's number to zero. Then write, "LIFTOFF!".
+                // Hint: You can accomplish this with one of several kinds of loops, including "while" and
+                //       "for". You can choose whichever you'd like to solve the task. The Microsoft
+                //       Developer Network (MSDN) website contains all of the documentation for C#. If you want
+                //       to learn more about loops, visit https://msdn.microsoft.com/en-us/library/32dbftby.aspx.
+                else
+                {
+                    while (secondsBeforeLiftOff >=0)
+                    {
+                        Console.WriteLine(secondsBeforeLiftOff + "...");
+                        Thread.Sleep(1000);
+                        secondsBeforeLiftOff -= 1;
+                    }
+                    Console.WriteLine("LIFTOFF!");
 
-
+                }
+            
             Console.WriteLine("Press <Enter> to exit...");
             Console.ReadLine();
         }
