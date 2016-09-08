@@ -1,2 +1,8 @@
 C:\Users\jfraney1\Source\Repos\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.exe.config
 C:\Users\Brian\CodeChallenges\Challenges\CS Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.exe.config
+C:\Users\English\Source\Repos\C-Sharp-Weekly-Challenge\Challenges\Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.exe.config
+C:\Users\English\Source\Repos\C-Sharp-Weekly-Challenge\Challenges\Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\obj\Debug\CodeLou.CSharp.Week2.Challenge.csprojResolveAssemblyReference.cache
+C:\Users\English\Source\Repos\C-Sharp-Weekly-Challenge\Challenges\Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.exe
+C:\Users\English\Source\Repos\C-Sharp-Weekly-Challenge\Challenges\Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.pdb
+C:\Users\English\Source\Repos\C-Sharp-Weekly-Challenge\Challenges\Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\obj\Debug\CodeLou.CSharp.Week2.Challenge.exe
+C:\Users\English\Source\Repos\C-Sharp-Weekly-Challenge\Challenges\Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\obj\Debug\CodeLou.CSharp.Week2.Challenge.pdb
