@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CodeLou.CSharp.Week2.Challenge")]
+[assembly: AssemblyTitle("CodeLou.CSharp.Week3.Challenge")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CodeLou.CSharp.Week2.Challenge")]
+[assembly: AssemblyProduct("CodeLou.CSharp.Week3.Challenge")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("eb6c7458-305e-4f2a-a783-d0496628824e")]
+[assembly: Guid("4a28b7b6-2be2-44a1-9d6a-b09c39e4d33f")]
 
 // Version information for an assembly consists of the following four values:
 //
