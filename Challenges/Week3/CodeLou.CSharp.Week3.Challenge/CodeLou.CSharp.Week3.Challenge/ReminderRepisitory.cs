@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using Newtonsoft.Json; //Build the project to cause Visual Studio to load this external NuGet package.
 
 namespace CodeLou.CSharp.Week3.Challenge
 {
 	public class ReminderRepisitory: ICalendarItemRepository<Reminder>
 	{
-		//Info: This is a neat type that allows you to lookup items by ID, be careful not to ask for an item that isn't there
+		//Info: This is a neat type that allows you to lookup items by ID, be careful not to ask for an item that isn't there.
 		private readonly Dictionary<int, Reminder> _dictionary; 
 
 		public ReminderRepisitory()
@@ -28,7 +28,6 @@ namespace CodeLou.CSharp.Week3.Challenge
 				nextAvailableId++;
 			}
 
-			//Oops: You may need to modify this constructor
 			var reminder = new Reminder();
 			reminder.Id = nextAvailableId;
 			_dictionary.Add(nextAvailableId, new Reminder());
@@ -36,7 +35,8 @@ namespace CodeLou.CSharp.Week3.Challenge
 			return reminder;
 		}
 
-		//Callenge: Are you finding that you are writing this same code many times? Is there a better way? Could you use inheritance?
+        //Callenge: Are you finding that you are writing this same code many times? Is there a better way? 
+        //Could you use inheritance?
 		public Reminder FindById(int id)
 		{
 			throw new NotImplementedException();

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace CodeLou.CSharp.Week3.Challenge
@@ -8,7 +7,6 @@ namespace CodeLou.CSharp.Week3.Challenge
 	{
 		static void Main(string[] args)
 		{
-
 			// Overview:
 			// In this assignment, you will be creating a calendar application that will load and save data. An example of loading and saving data has been provided.
 			// This calendar application will accept multiple event types which will be represented by their own class types. 
@@ -21,26 +19,28 @@ namespace CodeLou.CSharp.Week3.Challenge
 			
 			// Task 2:
 			// Define Your Data
-			// Appointments need to be assigned a start date and time, an end date and time, and a location
-			// Meetings need to be assigned a start date and time, an end date and time, a location, and attendees (What data do we need for attendees)
-			// Reminders need to be assigned a start date and time
-			// Hint: Consider using inheritance to make your life easier
+			// Appointments need to be assigned a start date and time, an end date and time, and a location.
+			// Meetings need to be assigned a start date and time, an end date and time, a location, and attendees. You can decide what data you need for attendees.
+			// Reminders need to be assigned a start date and time.
+			// Hint: Use inheritance to make your life easier.
 
-			// Task 3:
-			// We want our application to load data and to save data. I have already created the process for reminders, you will need to do the same thing
-			// for the other data types.
+            // Task 3:
+            // Add the missing code to the ReminderRepository. Hint: Look for instances of NotImplementedException.
+            // Create repository classes for Appointments and Meetings. Use the ReminderRepository as an example.
 
 			// Task 4:
-			// Fill in the missing options A, V, F, D for all classes
-
-			ReminderRepisitory reminderRepository = new ReminderRepisitory(); 
+			// We want our application to load data and to save data. The process for reminders has already been created. You will need to do the same thing
+			// for the other data types.
+			var reminderRepository = new ReminderRepisitory(); 
 			if (File.Exists("Reminders.json")) //Note: these files are created in the same folder as your .exe
-				//Note: What happens when this file is in the wrong format, can you handle this case?
+				//Note: What happens when this file is improperly formatte? Can you handle this case?
 				reminderRepository.LoadFromJson(File.ReadAllText("Reminders.json"));
+            
+            // Hint: var appointmentRepository = new AppointmentRepository(); etc...
 
-			// var appointmentRepository = new AppointmentRepository(); etc...
-
-			var sessionEnded = false;
+            // Task 5:
+            // Fill in the missing options A, V, F, D for all classes
+            var sessionEnded = false;
 			while (!sessionEnded)
 			{
 				Console.WriteLine("Q: save and quit");
@@ -79,7 +79,9 @@ namespace CodeLou.CSharp.Week3.Challenge
 								var newReminder = reminderRepository.Create();
 								break;
 							default:
-								Console.WriteLine(string.Format("Invalid Type {0}, press any key to continue.", selectedType));
+                                //Note: The $"abc {variable} def" syntax below is new syntactic sugar in C# 6.0 that can be used 
+                                //in place of string.Format() in previous versions of C#.
+                                Console.WriteLine($"Invalid Type {selectedType}, press any key to continue.");
 								Console.Read();
 								break;
 						}
@@ -91,7 +93,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 						throw new NotImplementedException();
 						break;
 					default:
-						Console.WriteLine(string.Format("Invalid Option {0}, press any key to continue.", selectedOption));
+						Console.WriteLine($"Invalid Option {selectedOption}, press any key to continue.");
 						Console.Read();
 						break;
 				}
