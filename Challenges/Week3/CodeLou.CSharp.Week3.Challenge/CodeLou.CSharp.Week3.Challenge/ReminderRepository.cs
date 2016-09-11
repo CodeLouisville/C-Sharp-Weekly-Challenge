@@ -4,12 +4,12 @@ using Newtonsoft.Json; //Build the project to cause Visual Studio to load this e
 
 namespace CodeLou.CSharp.Week3.Challenge
 {
-	public class ReminderRepisitory: ICalendarItemRepository<Reminder>
+	public class ReminderRepository: ICalendarItemRepository<Reminder>
 	{
 		//Info: This is a neat type that allows you to lookup items by ID, be careful not to ask for an item that isn't there.
 		private readonly Dictionary<int, Reminder> _dictionary; 
 
-		public ReminderRepisitory()
+		public ReminderRepository()
 		{
 			_dictionary = new Dictionary<int, Reminder>();
 		}
