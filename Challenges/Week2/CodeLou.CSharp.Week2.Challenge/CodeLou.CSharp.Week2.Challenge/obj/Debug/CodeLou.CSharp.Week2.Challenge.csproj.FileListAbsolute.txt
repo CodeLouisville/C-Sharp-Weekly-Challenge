@@ -1,2 +1,3 @@
 C:\Users\jfraney1\Source\Repos\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.exe.config
 C:\Users\Brian\CodeChallenges\Challenges\CS Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.exe.config
+C:\Users\david\Documents\GitHub\C-Sharp-Weekly-Challenge\Challenges\Week2\CodeLou.CSharp.Week2.Challenge\CodeLou.CSharp.Week2.Challenge\bin\Debug\CodeLou.CSharp.Week2.Challenge.exe.config
