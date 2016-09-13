@@ -5,6 +5,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 {
 	class Program
 	{
+
 		static void Main(string[] args)
 		{
 			// Overview:
@@ -35,8 +36,17 @@ namespace CodeLou.CSharp.Week3.Challenge
 			if (File.Exists("Reminders.json")) //Note: these files are created in the same folder as your .exe
 				//Note: What happens when this file is improperly formatte? Can you handle this case?
 				reminderRepository.LoadFromJson(File.ReadAllText("Reminders.json"));
-            
-            // Hint: var appointmentRepository = new AppointmentRepository(); etc...
+
+            var appointmentRepository = new AppointmentRepository();
+            if (File.Exists("Appointments.json")) //Note: these files are created in the same folder as your .exe
+                                                  //Note: What happens when this file is improperly formatte? Can you handle this case?
+                appointmentRepository.LoadFromJson(File.ReadAllText("Appointments.json"));
+
+            var meetingRepository = new MeetingRepository();
+            if (File.Exists("Meetings.json")) //Note: these files are created in the same folder as your .exe
+                                                  //Note: What happens when this file is improperly formatte? Can you handle this case?
+                meetingRepository.LoadFromJson(File.ReadAllText("Meetings.json"));
+
 
             // Task 5:
             // Fill in the missing options A, V, F, D for all classes
@@ -54,7 +64,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 				var selectedOption = Console.ReadKey().KeyChar;
 				Console.Clear();
 
-				switch (selectedOption)
+				switch (Char.ToUpper(selectedOption))
 				{
 					case ('Q'):
 						//End the session when they select q
@@ -69,7 +79,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 						var selectedType = Console.ReadKey().KeyChar;
 						Console.Clear();
 
-						switch (selectedType)
+						switch (Char.ToUpper(selectedType))
 						{//switch statements require a "break;", be careful not to experience this error
 							case ('A'):
 							case ('M'):
@@ -98,7 +108,10 @@ namespace CodeLou.CSharp.Week3.Challenge
 						break;
 				}
 			}
-			File.WriteAllText("Reminders.json", reminderRepository.ToJson());
-		}
+			File.WriteAllText("Appointments.json", appointmentRepository.ToJson());
+            File.WriteAllText("Meetings.json", meetingRepository.ToJson());
+            File.WriteAllText("Reminders.json", reminderRepository.ToJson());
+
+        }
 	}
 }

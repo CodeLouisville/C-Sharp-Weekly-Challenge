@@ -16,21 +16,30 @@ namespace CodeLou.CSharp.Week3.Challenge
 
 		public Reminder Create()
 		{
-			//Challenge: Can you find a more efficient way to do this?
-			var nextAvailableId = 0;
-			foreach (var currentId in _dictionary.Keys)
-			{
-				if (nextAvailableId > currentId)
-					continue;
-				if (nextAvailableId < currentId)
-					break;
 
-				nextAvailableId++;
-			}
+            //Challenge: Can you find a more efficient way to do this?
+            //OLD WAY
+            //var nextAvailableId = 0;
+            //foreach (var currentId in _dictionary.Keys)
+            //{
+            //	if (nextAvailableId > currentId)
+            //		continue;
+            //	if (nextAvailableId < currentId)
+            //		break;
 
-			var reminder = new Reminder();
+            //	nextAvailableId++;
+            //}
+
+            var nextAvailableId = _dictionary.Keys.Count+1;
+            Console.WriteLine("Enter Start date and time (Ex: 01/01/2016 12:00): ");
+            var startDateAndTime = DateTime.Parse(Console.ReadLine());
+            
+
+            var reminder = new Reminder();
 			reminder.Id = nextAvailableId;
-			_dictionary.Add(nextAvailableId, new Reminder());
+            reminder.StartDateAndTime = startDateAndTime;         
+
+			_dictionary.Add(reminder.Id, reminder);
 
 			return reminder;
 		}
@@ -39,7 +48,10 @@ namespace CodeLou.CSharp.Week3.Challenge
         //Could you use inheritance?
 		public Reminder FindById(int id)
 		{
-			throw new NotImplementedException();
+            if (_dictionary.ContainsKey(id))
+                return _dictionary[id];
+            else
+                return null;
 		}
 
 		public Reminder Update(Reminder item)
@@ -49,7 +61,8 @@ namespace CodeLou.CSharp.Week3.Challenge
 
 		public void Delete(Reminder item)
 		{
-			throw new NotImplementedException();
+            _dictionary.Remove(item.Id);
+            //throw new NotImplementedException();
 		}
 
 		public IEnumerable<Reminder> FindByDate(DateTime date)
