@@ -47,8 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment.cs" />
+    <Compile Include="CalendarException.cs" />
     <Compile Include="CalendarItemBase.cs" />
     <Compile Include="ICalendarItemRepository.cs" />
+    <Compile Include="Meeting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reminder.cs" />

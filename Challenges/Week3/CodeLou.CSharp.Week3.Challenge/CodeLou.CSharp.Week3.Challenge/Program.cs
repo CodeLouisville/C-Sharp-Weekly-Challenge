@@ -17,6 +17,8 @@ namespace CodeLou.CSharp.Week3.Challenge
 			// Each of your classes will inherit from the CalendarItemBase abstract class.
 			// Reminders have already been created as an example.
 			
+            //CREATED Appointment, Meeting classes.
+
 			// Task 2:
 			// Define Your Data
 			// Appointments need to be assigned a start date and time, an end date and time, and a location.
@@ -24,16 +26,21 @@ namespace CodeLou.CSharp.Week3.Challenge
 			// Reminders need to be assigned a start date and time.
 			// Hint: Use inheritance to make your life easier.
 
+
+
+
             // Task 3:
             // Add the missing code to the ReminderRepository. Hint: Look for instances of NotImplementedException.
             // Create repository classes for Appointments and Meetings. Use the ReminderRepository as an example.
 
+
+
 			// Task 4:
 			// We want our application to load data and to save data. The process for reminders has already been created. You will need to do the same thing
 			// for the other data types.
-			var reminderRepository = new ReminderRepisitory(); 
+			var reminderRepository = new ReminderRepository(); 
 			if (File.Exists("Reminders.json")) //Note: these files are created in the same folder as your .exe
-				//Note: What happens when this file is improperly formatte? Can you handle this case?
+				//Note: What happens when this file is improperly formatted? Can you handle this case?
 				reminderRepository.LoadFromJson(File.ReadAllText("Reminders.json"));
             
             // Hint: var appointmentRepository = new AppointmentRepository(); etc...
