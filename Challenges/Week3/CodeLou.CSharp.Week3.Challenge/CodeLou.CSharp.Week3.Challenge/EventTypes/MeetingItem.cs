@@ -2,7 +2,7 @@
 
 namespace CodeLou.CSharp.Week3.Challenge
 {
-	public class Meeting: CalendarItemBase
+	public class MeetingItem: CalendarItemBase
 	{
         public DateTime EndDateAndTime { get; set; }
         public string Location { get; set; }

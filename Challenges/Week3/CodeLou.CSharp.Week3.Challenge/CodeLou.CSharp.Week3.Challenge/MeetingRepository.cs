@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json; //Build the project to cause Visual Studio to load this external NuGet package.
+using System.Linq;
 
 namespace CodeLou.CSharp.Week3.Challenge
 {
-    public class MeetingRepository : ICalendarItemRepository<Meeting>
+    public class MeetingRepository : ICalendarItemRepository<MeetingItem>
     {
         //Info: This is a neat type that allows you to lookup items by ID, be careful not to ask for an item that isn't there.
-        private readonly Dictionary<int, Meeting> _dictionary;
+        private readonly Dictionary<int, MeetingItem> _dictionary;
 
         public MeetingRepository()
         {
-            _dictionary = new Dictionary<int, Meeting>();
+            _dictionary = new Dictionary<int, MeetingItem>();
         }
 
-        public Meeting Create()
+        public MeetingItem Create()
         {
             
             var nextAvailableId = _dictionary.Keys.Count + 1;
@@ -24,10 +25,18 @@ namespace CodeLou.CSharp.Week3.Challenge
             Console.WriteLine("Enter End date and time (Ex: 01/01/2016 12:00): ");
             var endDateAndTime = DateTime.Parse(Console.ReadLine());
 
-            var meeting = new Meeting();
+            Console.WriteLine("Enter location of meeting: ");
+            var location = Console.ReadLine();
+
+            Console.WriteLine("Enter number of attendees: ");
+            var attendees = int.Parse(Console.ReadLine());
+
+            var meeting = new MeetingItem();
             meeting.Id = nextAvailableId;
             meeting.StartDateAndTime = startDateAndTime;
             meeting.EndDateAndTime = endDateAndTime;
+            meeting.Location = location;
+            meeting.Attendees = attendees;
 
             _dictionary.Add(meeting.Id, meeting);
 
@@ -36,7 +45,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 
         //Challenge: Are you finding that you are writing this same code many times? Is there a better way? 
         //Could you use inheritance?
-        public Meeting FindById(int id)
+        public MeetingItem FindById(int id)
         {
             if (_dictionary.ContainsKey(id))
                 return _dictionary[id];
@@ -44,25 +53,24 @@ namespace CodeLou.CSharp.Week3.Challenge
                 return null;
         }
 
-        public Meeting Update(Meeting item)
+        public MeetingItem Update(MeetingItem item)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Meeting item)
+        public void Delete(MeetingItem item)
         {
-            _dictionary.Remove(item.Id);
-            //throw new NotImplementedException();
+            _dictionary.Remove(item.Id);            
         }
 
-        public IEnumerable<Meeting> FindByDate(DateTime date)
+        public IEnumerable<MeetingItem> FindByDate(DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Meeting> GetAllItems()
+        public IEnumerable<MeetingItem> GetAllItems()
         {
-            throw new NotImplementedException();
+            return _dictionary.Values.ToList();
         }
 
         public string ToJson()
@@ -72,7 +80,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 
         public void LoadFromJson(string json)
         {
-            var dictionary = JsonConvert.DeserializeObject<Dictionary<int, Meeting>>(json);
+            var dictionary = JsonConvert.DeserializeObject<Dictionary<int, MeetingItem>>(json);
             foreach (var item in dictionary)
             {
                 //This will add or update an item
