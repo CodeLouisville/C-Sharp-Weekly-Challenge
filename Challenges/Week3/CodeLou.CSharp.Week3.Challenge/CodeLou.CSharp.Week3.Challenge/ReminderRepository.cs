@@ -19,7 +19,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 		{
             #region OLD WAY OF CREATING
             //Challenge: Can you find a more efficient way to do this?
-            
+
             //var nextAvailableId = 0;
             //foreach (var currentId in _dictionary.Keys)
             //{
@@ -32,18 +32,26 @@ namespace CodeLou.CSharp.Week3.Challenge
             //}
             #endregion
 
-            var nextAvailableId = _dictionary.Keys.Count+1;
-            Console.WriteLine("Enter Start date and time (Ex: 01/01/2016 12:00): ");
-            var startDateAndTime = DateTime.Parse(Console.ReadLine());
-            
+            try
+            {
+                var nextAvailableId = _dictionary.Keys.Count;
+                Console.WriteLine("Enter Start date and time (Ex: 01/01/2016 12:00): ");
+                var startDateAndTime = DateTime.Parse(Console.ReadLine());
 
-            var reminder = new ReminderItem();
-			reminder.Id = nextAvailableId;
-            reminder.StartDateAndTime = startDateAndTime;         
 
-			_dictionary.Add(reminder.Id, reminder);
+                var reminder = new ReminderItem();
+                reminder.Id = nextAvailableId;
+                reminder.StartDateAndTime = startDateAndTime;
 
-			return reminder;
+                _dictionary.Add(reminder.Id, reminder);
+
+                return reminder;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Enable to create reminder");
+                return null;
+            }
 		}
 
         //Challenge: Are you finding that you are writing this same code many times? Is there a better way? 
@@ -68,8 +76,15 @@ namespace CodeLou.CSharp.Week3.Challenge
 
 		public IEnumerable<ReminderItem> FindByDate(DateTime date)
 		{
+            List<ReminderItem> listOfMatchingDates = new List<ReminderItem>();
+            foreach (var item in _dictionary)
+            {
+                if (item.Value.StartDateAndTime.Date == date.Date)
+                    listOfMatchingDates.Add(item.Value);
 
-            throw new NotImplementedException();
+            }
+
+            return listOfMatchingDates;
         }
 
 		public IEnumerable<ReminderItem> GetAllItems()
@@ -84,12 +99,18 @@ namespace CodeLou.CSharp.Week3.Challenge
 
 		public void LoadFromJson(string json)
 		{
-			var dictionary = JsonConvert.DeserializeObject<Dictionary<int, ReminderItem>>(json);
-			foreach (var item in dictionary)
-			{
-				//This will add or update an item
-				_dictionary[item.Key] = item.Value;
-			}
+            try
+            {
+                var dictionary = JsonConvert.DeserializeObject<Dictionary<int, ReminderItem>>(json);
+                foreach (var item in dictionary)
+                {
+                    //This will add or update an item
+                    _dictionary[item.Key] = item.Value;
+                }
+            }catch(JsonReaderException e)
+            {
+                Console.WriteLine($"Error reading {json} file: {e.Message}\n");
+            }
 		}
 	}
 }

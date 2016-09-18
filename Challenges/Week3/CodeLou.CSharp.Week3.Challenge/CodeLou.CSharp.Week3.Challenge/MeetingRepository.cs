@@ -17,30 +17,37 @@ namespace CodeLou.CSharp.Week3.Challenge
 
         public MeetingItem Create()
         {
-            
-            var nextAvailableId = _dictionary.Keys.Count + 1;
-            Console.WriteLine("Enter Start date and time (Ex: 01/01/2016 12:00): ");
-            var startDateAndTime = DateTime.Parse(Console.ReadLine());
+            try
+            {
+                var nextAvailableId = _dictionary.Keys.Count;
+                Console.WriteLine("Enter Start date and time (Ex: 01/01/2016 12:00): ");
+                var startDateAndTime = DateTime.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter End date and time (Ex: 01/01/2016 12:00): ");
-            var endDateAndTime = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Enter End date and time (Ex: 01/01/2016 12:00): ");
+                var endDateAndTime = DateTime.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter location of meeting: ");
-            var location = Console.ReadLine();
+                Console.WriteLine("Enter location of meeting: ");
+                var location = Console.ReadLine();
 
-            Console.WriteLine("Enter number of attendees: ");
-            var attendees = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter number of attendees: ");
+                var attendees = int.Parse(Console.ReadLine());
 
-            var meeting = new MeetingItem();
-            meeting.Id = nextAvailableId;
-            meeting.StartDateAndTime = startDateAndTime;
-            meeting.EndDateAndTime = endDateAndTime;
-            meeting.Location = location;
-            meeting.Attendees = attendees;
+                var meeting = new MeetingItem();
+                meeting.Id = nextAvailableId;
+                meeting.StartDateAndTime = startDateAndTime;
+                meeting.EndDateAndTime = endDateAndTime;
+                meeting.Location = location;
+                meeting.Attendees = attendees;
 
-            _dictionary.Add(meeting.Id, meeting);
+                _dictionary.Add(meeting.Id, meeting);
 
-            return meeting;
+                return meeting;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Enable to create meeting");
+                return null;
+            }
         }
 
         //Challenge: Are you finding that you are writing this same code many times? Is there a better way? 
@@ -65,7 +72,13 @@ namespace CodeLou.CSharp.Week3.Challenge
 
         public IEnumerable<MeetingItem> FindByDate(DateTime date)
         {
-            throw new NotImplementedException();
+            List<MeetingItem> listOfMatchingDates = new List<MeetingItem>();
+            foreach (var item in _dictionary)
+            {
+                if (item.Value.StartDateAndTime.Date == date.Date)
+                    listOfMatchingDates.Add(item.Value);
+            }
+            return listOfMatchingDates;
         }
 
         public IEnumerable<MeetingItem> GetAllItems()
@@ -80,11 +93,17 @@ namespace CodeLou.CSharp.Week3.Challenge
 
         public void LoadFromJson(string json)
         {
-            var dictionary = JsonConvert.DeserializeObject<Dictionary<int, MeetingItem>>(json);
-            foreach (var item in dictionary)
+            try
             {
-                //This will add or update an item
-                _dictionary[item.Key] = item.Value;
+                var dictionary = JsonConvert.DeserializeObject<Dictionary<int, MeetingItem>>(json);
+                foreach (var item in dictionary)
+                {
+                    //This will add or update an item
+                    _dictionary[item.Key] = item.Value;
+                }
+            }catch(JsonReaderException e)
+            {
+                Console.WriteLine($"Error reading {json} file: {e.Message}\n");
             }
         }
     }

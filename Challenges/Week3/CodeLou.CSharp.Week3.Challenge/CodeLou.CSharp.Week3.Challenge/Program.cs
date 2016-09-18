@@ -124,25 +124,13 @@ namespace CodeLou.CSharp.Week3.Challenge
             switch (Char.ToUpper(selectedType))
             {//switch statements require a "break;", be careful not to experience this error
                 case ('A'):
-                    var ListOfAppointments = appointmentRepository.GetAllItems();
-                    Console.WriteLine("Id\tStart date and time\tEnd date and time\tLocation");
-                    foreach (var appointment in ListOfAppointments)
-                        Console.WriteLine($"{appointment.Id}\t{appointment.StartDateAndTime}\t{appointment.EndDateAndTime}\t{appointment.Location}");
-                    Console.WriteLine("\nEnd of Appointments\n\n");
+                    RetrieveAndDisplayAllAppointments(appointmentRepository);
                     break;
                 case ('M'):
-                    var ListOfMeetings = meetingRepository.GetAllItems();
-                    Console.WriteLine("Id\tStart date and time\tLocation\t# of attendees");
-                    foreach (var meeting in ListOfMeetings)
-                        Console.WriteLine($"{meeting.Id} {meeting.StartDateAndTime} {meeting.Location} {meeting.Attendees}");
-                    Console.WriteLine("\nEnd of Meetings\n\n");
+                    RetrieveAndDisplayAllMeetings(meetingRepository);
                     break;
                 case ('R'):
-                    var ListOfReminders = reminderRepository.GetAllItems();
-                    Console.WriteLine("Id\tStart date and time");
-                    foreach (var reminder in ListOfReminders)
-                        Console.WriteLine($"{reminder.Id} {reminder.StartDateAndTime}");
-                    Console.WriteLine("\nEnd of Reminders\n\n");
+                    RetrieveAndDisplayAllReminders(reminderRepository);
                     break;
                 default:
                     //Note: The $"abc {variable} def" syntax below is new syntactic sugar in C# 6.0 that can be used 
@@ -152,36 +140,66 @@ namespace CodeLou.CSharp.Week3.Challenge
                     break;
             }
         }
+
+        private static void RetrieveAndDisplayAllReminders(ReminderRepository reminderRepository)
+        {
+            var ListOfReminders = reminderRepository.GetAllItems();
+            Console.WriteLine("Id\tStart date and time");
+            foreach (var reminder in ListOfReminders)
+                Console.WriteLine($"{reminder.Id}\t{reminder.StartDateAndTime}");
+            Console.WriteLine("\nEnd of Reminders\n\n");
+        }
+        private static void RetrieveAndDisplayAllMeetings(MeetingRepository meetingRepository)
+        {
+            var ListOfMeetings = meetingRepository.GetAllItems();
+            Console.WriteLine("Id\tStart date and time\tEnd date and time\tLocation\t# of attendees");
+            foreach (var meeting in ListOfMeetings)
+                Console.WriteLine($"{meeting.Id}\t{meeting.StartDateAndTime}\t{meeting.EndDateAndTime}\t{meeting.Location}\t{meeting.Attendees}");
+            Console.WriteLine("\nEnd of Meetings\n\n");
+        }
+        private static void RetrieveAndDisplayAllAppointments(AppointmentRepository appointmentRepository)
+        {
+            var ListOfAppointments = appointmentRepository.GetAllItems();
+            Console.WriteLine("Id\tStart date and time\tEnd date and time\tLocation");
+            foreach (var appointment in ListOfAppointments)
+                Console.WriteLine($"{appointment.Id}\t{appointment.StartDateAndTime}\t{appointment.EndDateAndTime}\t{appointment.Location}");
+            Console.WriteLine("\nEnd of Appointments\n\n");
+        }
+
         private static void FindItemMenu(AppointmentRepository appointmentRepository, MeetingRepository meetingRepository, ReminderRepository reminderRepository)
         {
+
+            //TODO: Find by date needs to be implemented.
             var selectedType = DisplayTypeMenu();
+            DateTime dateToFind;
             switch (Char.ToUpper(selectedType))
             {//switch statements require a "break;", be careful not to experience this error
                 case ('A'):
 
-                    Console.Write("Enter the appointment ID: ");
-                    int appointmentId;
-                    int.TryParse(Console.ReadLine(), out appointmentId);
-                    var appointmentToFind = appointmentRepository.FindById(appointmentId);
-                    if (appointmentToFind != null)
-                    {
-                        Console.WriteLine($"{appointmentToFind.Id}\t{appointmentToFind.StartDateAndTime}\t{appointmentToFind.EndDateAndTime}\t{appointmentToFind.Location}\n");                        
-                    }
-                    else
-                    {
-                        Console.WriteLine("Appointment not found");
-                    }
+                    Console.Write("Enter the date of the appointment to find: ");
+                    dateToFind = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Results");
+                    foreach (var item in appointmentRepository.FindByDate(dateToFind))
+                        Console.WriteLine($"{item.Id}\t{item.StartDateAndTime}\t{item.EndDateAndTime}\t{item.Location}");
+                    Console.WriteLine($"End of search results\n");
                     break;
 
                 case ('M'):
-                    var ListOfMeetings = meetingRepository.GetAllItems();
-                    foreach (var meeting in ListOfMeetings)
-                        Console.WriteLine($"{meeting.Id} {meeting.StartDateAndTime} {meeting.Location} {meeting.Attendees}");
+                    Console.Write("Enter the date of the meeting to find: ");
+                    dateToFind = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Results");
+                    foreach (var item in meetingRepository.FindByDate(dateToFind))
+                        Console.WriteLine($"{item.Id}\t{item.StartDateAndTime}\t{item.EndDateAndTime}\t{item.Location}\t{item.Attendees}");
+                    Console.WriteLine($"End of search results\n");
                     break;
+
                 case ('R'):
-                    var ListOfReminders = reminderRepository.GetAllItems();
-                    foreach (var reminder in ListOfReminders)
-                        Console.WriteLine($"{reminder.Id} {reminder.StartDateAndTime}");
+                    Console.Write("Enter the date of the reminder to find: ");
+                    dateToFind = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Results");
+                    foreach (var item in reminderRepository.FindByDate(dateToFind))
+                        Console.WriteLine($"{item.Id}\t{item.StartDateAndTime}");
+                    Console.WriteLine($"End of search results\n");                    
                     break;
                 default:
                     //Note: The $"abc {variable} def" syntax below is new syntactic sugar in C# 6.0 that can be used 
@@ -193,19 +211,51 @@ namespace CodeLou.CSharp.Week3.Challenge
         }
         private static void DeleteItemMenu(AppointmentRepository appointmentRepository, MeetingRepository meetingRepository, ReminderRepository reminderRepository)
         {
-            //TODO: Replace Create with Delete options
-            var selectedType = DisplayTypeMenu();
+            var selectedType = DisplayTypeMenu();            
             switch (Char.ToUpper(selectedType))
             {//switch statements require a "break;", be careful not to experience this error
                 case ('A'):
-                    var newAppointment = appointmentRepository.Create();
+                    RetrieveAndDisplayAllAppointments(appointmentRepository);
+                    Console.Write("Enter the id of appointment to delete: ");
+                    var idOfAppointmentToDelete = 0;
+                    int.TryParse(Console.ReadLine(), out idOfAppointmentToDelete);
+                    AppointmentItem appointmentToDelete = appointmentRepository.FindById(idOfAppointmentToDelete);
+                    if (appointmentToDelete != null)
+                    {
+                        appointmentRepository.Delete(appointmentToDelete);
+                        Console.WriteLine("Appointment deleted\n");
+                    }
+                    else
+                        Console.WriteLine($"Unable to find appointment with id: {idOfAppointmentToDelete}");                   
                     break;
                 case ('M'):
-                    var newMeeting = meetingRepository.Create();
+                    RetrieveAndDisplayAllMeetings(meetingRepository);
+                    Console.Write("Enter the id of meeting to delete: ");
+                    var idOfMeetingToDelete = 0;
+                    int.TryParse(Console.ReadLine(), out idOfMeetingToDelete);
+                    MeetingItem meetingToDelete = meetingRepository.FindById(idOfMeetingToDelete);
+                    if (meetingToDelete != null)
+                    {
+                        meetingRepository.Delete(meetingToDelete);
+                        Console.WriteLine("Meeting deleted\n");
+                    }
+                    else
+                        Console.WriteLine($"Unable to find meeting with id: {idOfMeetingToDelete}");
                     break;
                 case ('R'):
-                    var newReminder = reminderRepository.Create();
-                    break;
+                    RetrieveAndDisplayAllReminders(reminderRepository);
+                    Console.Write("Enter the id of reminder to delete: ");
+                    var idOfReminderToDelete = 0;
+                    int.TryParse(Console.ReadLine(), out idOfReminderToDelete);
+                    ReminderItem reminderToDelete = reminderRepository.FindById(idOfReminderToDelete);
+                    if (reminderToDelete != null)
+                    {
+                        reminderRepository.Delete(reminderToDelete);
+                        Console.WriteLine("Reminder deleted\n");
+                    }
+                    else
+                        Console.WriteLine($"Unable to find reminder with id: {idOfReminderToDelete}");
+                    break;                    
                 default:
                     //Note: The $"abc {variable} def" syntax below is new syntactic sugar in C# 6.0 that can be used 
                     //in place of string.Format() in previous versions of C#.
@@ -226,7 +276,8 @@ namespace CodeLou.CSharp.Week3.Challenge
             var selectedType = Console.ReadKey().KeyChar;
             Console.Clear();
             return selectedType;
-        }
+        }    
+
 
     }
 }
