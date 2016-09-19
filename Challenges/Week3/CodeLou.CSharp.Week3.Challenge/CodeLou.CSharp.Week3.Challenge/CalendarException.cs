@@ -8,29 +8,26 @@ namespace CodeLou.CSharp.Week3.Challenge
 {
     class CalendarException : System.Exception
     {
-        public ChallengeException()
+        public CalendarException()
+            {
+     
+            }
+        public CalendarException(string message) : base(message)
             {
 
             }
-        public ChallengeException(string message) : base(message)
-            {
-
-            }
-        }
-
-        class OutOfBoundsException : ChallengeException
-        {
-            public OutOfBoundsException()
-            {
-
-            }
-
-            public OutOfBoundsException(string message) : base(message)
-            {
-
-            }
-        }
     }
 
-}
+    class OutOfBoundsException : CalendarException
+    {
+        public OutOfBoundsException()
+        {
+
+        }
+
+        public OutOfBoundsException(string message) : base(message)
+        {
+
+        }
+    }
 }

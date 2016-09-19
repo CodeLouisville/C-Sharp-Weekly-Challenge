@@ -17,7 +17,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 			// Each of your classes will inherit from the CalendarItemBase abstract class.
 			// Reminders have already been created as an example.
 			
-            //CREATED Appointment, Meeting classes.
+            //CREATED Appointment, Meeting classes //
 
 			// Task 2:
 			// Define Your Data
@@ -26,14 +26,14 @@ namespace CodeLou.CSharp.Week3.Challenge
 			// Reminders need to be assigned a start date and time.
 			// Hint: Use inheritance to make your life easier.
 
-
+            //UTILIZED inheritance for all variables.
 
 
             // Task 3:
             // Add the missing code to the ReminderRepository. Hint: Look for instances of NotImplementedException.
             // Create repository classes for Appointments and Meetings. Use the ReminderRepository as an example.
 
-
+            //CREATED Appointment, Meeting //
 
 			// Task 4:
 			// We want our application to load data and to save data. The process for reminders has already been created. You will need to do the same thing
@@ -42,8 +42,19 @@ namespace CodeLou.CSharp.Week3.Challenge
 			if (File.Exists("Reminders.json")) //Note: these files are created in the same folder as your .exe
 				//Note: What happens when this file is improperly formatted? Can you handle this case?
 				reminderRepository.LoadFromJson(File.ReadAllText("Reminders.json"));
-            
+
             // Hint: var appointmentRepository = new AppointmentRepository(); etc...
+            var AppointmentRepository = new AppointmentRepository();
+            if (File.Exists("Appointments.json")) //Note: these files are created in the same folder as your .exe
+                                               //Note: What happens when this file is improperly formatted? Can you handle this case?
+                reminderRepository.LoadFromJson(File.ReadAllText("Appointments.json"));
+
+            var MeetingRepository = new MeetingRepository();
+            if (File.Exists("Meetings.json")) //Note: these files are created in the same folder as your .exe
+                                               //Note: What happens when this file is improperly formatted? Can you handle this case?
+                MeetingRepository.LoadFromJson(File.ReadAllText("Meetings.json"));
+
+
 
             // Task 5:
             // Fill in the missing options A, V, F, D for all classes

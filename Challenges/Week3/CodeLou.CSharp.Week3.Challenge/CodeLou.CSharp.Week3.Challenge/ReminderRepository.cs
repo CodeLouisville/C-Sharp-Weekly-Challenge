@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json; //Build the project to cause Visual Studio to load this external NuGet package.
+using System.Xml;
 
 namespace CodeLou.CSharp.Week3.Challenge
 {
@@ -35,7 +36,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 			return reminder;
 		}
 
-        //Callenge: Are you finding that you are writing this same code many times? Is there a better way? 
+        //Challenge: Are you finding that you are writing this same code many times? Is there a better way? 
         //Could you use inheritance?
 		public Reminder FindById(int id)
 		{

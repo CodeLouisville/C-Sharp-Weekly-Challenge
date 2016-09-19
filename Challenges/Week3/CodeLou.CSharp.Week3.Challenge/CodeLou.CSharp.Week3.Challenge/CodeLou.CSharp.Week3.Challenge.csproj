@@ -55,7 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reminder.cs" />
-    <Compile Include="ReminderRepisitory.cs" />
+    <Compile Include="ReminderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
