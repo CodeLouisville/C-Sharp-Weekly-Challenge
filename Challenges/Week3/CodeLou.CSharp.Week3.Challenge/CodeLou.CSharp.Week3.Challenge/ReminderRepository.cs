@@ -64,9 +64,13 @@ namespace CodeLou.CSharp.Week3.Challenge
                 return null;
 		}
 
-		public ReminderItem Update(ReminderItem item)
+		public void Update(ReminderItem item)
 		{
-			throw new NotImplementedException();
+                                 
+            Console.WriteLine("Enter Start date and time (Ex: 01/01/2016 12:00): ");
+            var startDateAndTime = DateTime.Parse(Console.ReadLine());
+            item.StartDateAndTime = startDateAndTime;           
+                       
 		}
 
 		public void Delete(ReminderItem item)

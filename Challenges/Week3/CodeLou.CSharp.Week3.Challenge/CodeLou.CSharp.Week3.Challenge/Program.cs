@@ -53,8 +53,9 @@ namespace CodeLou.CSharp.Week3.Challenge
 			{
 				Console.WriteLine("Q: save and quit");
 				Console.WriteLine("A: add item");
-				Console.WriteLine("V: view all");
-				Console.WriteLine("F: find by date");
+                Console.WriteLine("U: update item");
+                Console.WriteLine("V: view all");
+				Console.WriteLine("F: find by date");                
 				Console.WriteLine("D: delete an item");
 				Console.WriteLine();
 
@@ -71,7 +72,10 @@ namespace CodeLou.CSharp.Week3.Challenge
 					case ('A'):
                         AddItemMenu(appointmentRepository, meetingRepository, reminderRepository);						
 						break;
-					case ('V'):
+                    case ('U'):
+                        UpdateItemMenu(appointmentRepository, meetingRepository, reminderRepository);
+                        break;
+                    case ('V'):
                         ViewItemMenu(appointmentRepository, meetingRepository, reminderRepository);
                         break;
 					case ('F'):
@@ -92,7 +96,40 @@ namespace CodeLou.CSharp.Week3.Challenge
 
         }
 
-        
+        private static void UpdateItemMenu(AppointmentRepository appointmentRepository, MeetingRepository meetingRepository, ReminderRepository reminderRepository)
+        {
+            var selectedType = DisplayTypeMenu();
+            switch (Char.ToUpper(selectedType))
+            {//switch statements require a "break;", be careful not to experience this error
+                case ('A'):
+                    RetrieveAndDisplayAllAppointments(appointmentRepository);
+                    Console.WriteLine("Enter the Id of appointment to update: ");
+                    int idOfAppointmentItemToUpdate = int.Parse(Console.ReadLine());
+                    appointmentRepository.Update(appointmentRepository.FindById(idOfAppointmentItemToUpdate));
+                    break;
+
+                case ('M'):
+                    RetrieveAndDisplayAllMeetings(meetingRepository);
+                    Console.WriteLine("Enter the Id of meeting to update: ");
+                    int idOfMeetingItemToUpdate = int.Parse(Console.ReadLine());
+                    meetingRepository.Update(meetingRepository.FindById(idOfMeetingItemToUpdate));
+                    break;
+
+                case ('R'):
+                    RetrieveAndDisplayAllReminders(reminderRepository);
+                    Console.WriteLine("Enter the Id of reminder to update: ");
+                    int idOfReminderItemToUpdate = int.Parse(Console.ReadLine());
+                    reminderRepository.Update(reminderRepository.FindById(idOfReminderItemToUpdate));   
+                    break;
+
+                default:
+                    //Note: The $"abc {variable} def" syntax below is new syntactic sugar in C# 6.0 that can be used 
+                    //in place of string.Format() in previous versions of C#.
+                    Console.WriteLine($"Invalid Type {selectedType}, press any key to continue.");
+                    Console.Read();
+                    break;
+            }
+        }
 
         private static void AddItemMenu(AppointmentRepository appointmentRepository, MeetingRepository meetingRepository, ReminderRepository reminderRepository)
         {
@@ -168,8 +205,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 
         private static void FindItemMenu(AppointmentRepository appointmentRepository, MeetingRepository meetingRepository, ReminderRepository reminderRepository)
         {
-
-            //TODO: Find by date needs to be implemented.
+            
             var selectedType = DisplayTypeMenu();
             DateTime dateToFind;
             switch (Char.ToUpper(selectedType))

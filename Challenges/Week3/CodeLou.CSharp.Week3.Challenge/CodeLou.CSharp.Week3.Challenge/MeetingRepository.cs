@@ -60,9 +60,26 @@ namespace CodeLou.CSharp.Week3.Challenge
                 return null;
         }
 
-        public MeetingItem Update(MeetingItem item)
+        public void Update(MeetingItem item)
         {
-            throw new NotImplementedException();
+           
+
+            Console.WriteLine("Enter Start date and time (Ex: 01/01/2016 12:00): ");
+            var startDateAndTime = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter End date and time (Ex: 01/01/2016 12:00): ");
+            var endDateAndTime = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter location of meeting: ");
+            var location = Console.ReadLine();
+
+            Console.WriteLine("Enter number of attendees: ");
+            var attendees = int.Parse(Console.ReadLine());
+
+            _dictionary[item.Id].StartDateAndTime = startDateAndTime;
+            _dictionary[item.Id].EndDateAndTime = endDateAndTime;
+            _dictionary[item.Id].Location = location;
+            _dictionary[item.Id].Attendees = attendees;            
         }
 
         public void Delete(MeetingItem item)
