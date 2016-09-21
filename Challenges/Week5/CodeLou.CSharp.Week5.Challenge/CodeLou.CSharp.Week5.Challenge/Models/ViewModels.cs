@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace CodeLou.CSharp.Week4.Challenge.Models
+namespace CodeLou.CSharp.Week5.Challenge.Models
 {
     // Note: view models generally do not contain any SQL code. They are only supposed to contain Methods and Properties that pertain
     // to your front facing website.    

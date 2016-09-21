@@ -1,4 +1,4 @@
-﻿using CodeLou.CSharp.Week4.Challenge.Models;
+﻿using CodeLou.CSharp.Week5.Challenge.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CodeLou.CSharp.Week4.Challenge.Controllers
+namespace CodeLou.CSharp.Week5.Challenge.Controllers
 {
     public class DefaultController : Controller
     {

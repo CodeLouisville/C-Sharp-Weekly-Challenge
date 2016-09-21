@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CodeLou.CSharp.Week4.Challenge
+namespace CodeLou.CSharp.Week5.Challenge
 {
     public class RouteConfig
     {

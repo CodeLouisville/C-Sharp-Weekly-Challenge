@@ -1,4 +1,4 @@
-﻿using CodeLou.CSharp.Week4.Challenge.Models;
+﻿using CodeLou.CSharp.Week5.Challenge.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace CodeLou.CSharp.Week4.Challenge
+namespace CodeLou.CSharp.Week5.Challenge
 {
     public class SqlRepository
     {
