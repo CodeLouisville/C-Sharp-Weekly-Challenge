@@ -12,31 +12,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "FirstName" })
+            @Html.DisplayNameFor(model => model.FirstName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "FirstName", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "LastName" })
+            @Html.DisplayNameFor(model => model.LastName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "LastName", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PositionName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "P.PositionName" })
+            @Html.DisplayNameFor(model => model.PositionName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "P.PositionName", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartmentName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "D.DepartmentName" })
+            @Html.DisplayNameFor(model => model.DepartmentName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "D.DepartmentName", OrderDirection = ViewBag.OrderDirection })
         </th>        
         <th>
-            @Html.DisplayNameFor(model => model.EMail) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "EMail" })
+            @Html.DisplayNameFor(model => model.EMail) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "EMail", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Phone" })
+            @Html.DisplayNameFor(model => model.Phone) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Phone", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Extension) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Extension" })
+            @Html.DisplayNameFor(model => model.Extension) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Extension", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartTime) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "StartTime" })
+            @Html.DisplayNameFor(model => model.StartTime) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "StartTime", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ActiveEmployee) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "ActiveEmployee" })
+            @Html.DisplayNameFor(model => model.ActiveEmployee) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "ActiveEmployee", OrderDirection = ViewBag.OrderDirection })
         </th>
         <th></th>
     </tr>

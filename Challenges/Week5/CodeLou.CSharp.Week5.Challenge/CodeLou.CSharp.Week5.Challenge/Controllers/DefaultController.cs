@@ -21,8 +21,10 @@ namespace CodeLou.CSharp.Week5.Challenge.Controllers
         private string _LocalFileConnectionString = ConfigurationManager.ConnectionStrings["LocalFileConnectionString"].ConnectionString;
         
         // GET: Default
-        public ActionResult Index(string OrderBy)
+        public ActionResult Index(string OrderBy, string OrderDirection = "ASC")
         {
+            ViewBag.OrderDirection = Session["OrderDirection"] ?? OrderDirection;
+
             // new up a repository class so you can start using data, since we're using SQL Repository, pass in either the
             // local file connection string or MsSql connection string, as the libraries they use are the same.
             SqlRepository repository = new SqlRepository(_LocalFileConnectionString);
@@ -34,12 +36,14 @@ namespace CodeLou.CSharp.Week5.Challenge.Controllers
 
             // remember relational databased store additional data in other tables. If we join
             // our employee on the Department table and Position table then we get that information to display
-
+            
             string sql = "SELECT * FROM Employee E INNER JOIN Department D ON D.Id = E.DepartmentId INNER JOIN Position P ON P.Id = E.PositionId";
 
             // TODO: How to we order the data by a column, enable sorting?
             if (!String.IsNullOrEmpty(OrderBy))
             {
+                // sql += ??
+                // TODO: Bonus - How do we persist the OrderDirection?
             }
 
             List<Employee> allEmployees = repository.GetEmployees(sql);
