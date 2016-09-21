@@ -12,6 +12,8 @@ namespace CodeLou.CSharp.Week4.Challenge
     {
         /// <summary>
         /// Normally it is bad form to pass in a SQL statements directly to your repository methods, but this if for demonstration purposes.
+        /// Here is more information on why you shouldn't do this in a real enviroment.
+        /// https://en.wikipedia.org/wiki/SQL_injection
         /// </summary>
         private string _ConnectionString;
         /// <summary>
