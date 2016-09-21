@@ -1,35 +1,56 @@
 ﻿-- Notice slight differences between MSSQL and MySQL. It's mostly the same, just a little different syntax.
 
-CREATE SCHEMA IF NOT EXISTS codelouisville;
-USE codelouisville;
-CREATE TABLE IF NOT EXISTS `position`
-(
-	Id INT NOT NULL AUTO_INCREMENT,
-    PositionName VARCHAR(100) NOT NULL,
-    PRIMARY KEY (Id)    
-);
+IF DB_ID(N'CodeLouisville') IS NULL
+BEGIN
+	CREATE DATABASE CodeLouisville;
+END
+GO
 
-CREATE TABLE IF NOT EXISTS floor
+USE CodeLouisville
+GO
+
+IF NOT EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Position')
+BEGIN
+	CREATE TABLE Position
+	(
+		Id INT IDENTITY(1,1) NOT NULL,
+		PositionName VARCHAR(100) NOT NULL,
+		PRIMARY KEY (Id)
+	)
+END
+GO
+
+IF NOT EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Floor')
+BEGIN
+CREATE TABLE [Floor]
 (
-	Id INT NOT NULL AUTO_INCREMENT,
+	Id INT NOT NULL IDENTITY(1,1),
     FloorNumber INT NOT NULL,
     FloorName VARCHAR(5) NOT NULL,
     PRIMARY KEY (Id)
-);
+)
+END
+GO
 
-CREATE TABLE IF NOT EXISTS department
+IF NOT EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Department')
+BEGIN
+CREATE TABLE Department
 (
-	Id INT NOT NULL AUTO_INCREMENT,
+	Id INT NOT NULL IDENTITY(1,1),
     FloorId INT NOT NULL,
     DepartmentName VARCHAR(100) NOT NULL,
     PRIMARY KEY (Id),
-    KEY department_floor_idx (FloorId), -- foreign key index
-    CONSTRAINT department_floor FOREIGN KEY (FloorId) REFERENCES floor (Id) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+    INDEX department_floor_idx (FloorId), -- foreign key index
+    CONSTRAINT department_floor FOREIGN KEY (FloorId) REFERENCES [Floor] (Id)
+)
+END
+GO
 
-CREATE TABLE IF NOT EXISTS employee
+IF NOT EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Employee')
+BEGIN
+CREATE TABLE Employee
 (	
-	Id INT NOT NULL AUTO_INCREMENT, -- primary Key, as an INT you can have SQL Auto Increment that number when a record is inserted
+	Id INT NOT NULL IDENTITY(1,1), -- primary Key, as an INT you can have SQL Auto Increment that number when a record is inserted
     PositionId INT NOT NULL, -- foregin key
     DepartmentId INT, -- foregin key
 	FirstName VARCHAR(100) NOT NULL,
@@ -39,28 +60,30 @@ CREATE TABLE IF NOT EXISTS employee
     Extension VARCHAR(4),
 	HireDate DATETIME NOT NULL,
     TerminationDate DATETIME,
-    StartTime TIME NOT NULL,
-    ActiveEmployee TINYINT(1) NOT NULL DEFAULT '0',
-    PRIMARY KEY (Id),
-    KEY employee_position_idx (PositionId), -- foreign key index
-    KEY employee_department_idx (DepartmentId), -- foreign key index
+    StartTime VARCHAR(10) NOT NULL,
+    ActiveEmployee BIT NOT NULL DEFAULT '0',
+    PRIMARY KEY (Id), 
+    INDEX employee_position_idx (PositionId), -- foreign key index
+    INDEX employee_department_idx (DepartmentId), -- foreign key index
     
     -- add a constraint that a record must have this value to be inserted, so and employee corresponds to a position, must be a unique name. 
     -- this is saying that PositionId in this table references employee_position's Id (Primary Key)
-    CONSTRAINT employee_position FOREIGN KEY (PositionId) REFERENCES `position` (Id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT employee_department FOREIGN KEY (DepartmentId) REFERENCES department (Id) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+    CONSTRAINT employee_position FOREIGN KEY (PositionId) REFERENCES Position (Id),
+    CONSTRAINT employee_department FOREIGN KEY (DepartmentId) REFERENCES Department (Id)
+)
+END
+GO
 
-INSERT INTO `position` (PositionName)
+INSERT INTO Position (PositionName)
 VALUES ('Manager'), ('Employee'), ('Assistant Manager'), ('Junior Developer'), ('Developer');
 
-INSERT INTO floor (FloorNumber, FloorName)
+INSERT INTO [Floor] (FloorNumber, FloorName)
 VALUES (1, 'East'), (1, 'West'), (3, 'South'), (2, 'North');
 
-INSERT INTO department (DepartmentName, FloorId)
+INSERT INTO Department (DepartmentName, FloorId)
 VALUES ('Customer Support', 1), ('Sales', 2), ('Developers', 1), ('Reception', 1), ('HR', 3), ('Finance', 4);
 
-INSERT INTO employee (PositionId, DepartmentId, FirstName, LastName, Email, Phone, Extension, HireDate, TerminationDate, StartTime, ActiveEmployee)
+INSERT INTO Employee (PositionId, DepartmentId, FirstName, LastName, Email, Phone, Extension, HireDate, TerminationDate, StartTime, ActiveEmployee)
 VALUES
 (
 	1, -- Position: Manager
@@ -72,7 +95,7 @@ VALUES
     '3424', -- Extension
     '2016-01-01 10:25:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     NULL, -- TerminationDate
-    '09:00:00', -- StartTime, format: 'HH:MM:SS'
+    '9:00 AM', 
     1 -- ActiveEmployee: 1 = True, 2 = False
 ),
 (
@@ -85,7 +108,7 @@ VALUES
     '1245', -- Extension
     '2016-09-01 8:00:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     NULL, -- TerminationDate
-    '09:30:00', -- StartTime, format: 'HH:MM:SS'
+    '9:30 AM', 
     1 -- ActiveEmployee
 ),
 (
@@ -98,7 +121,7 @@ VALUES
     '0124', -- Extension
     '2014-09-01 8:00:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     '2015-01-01 8:00:00', -- TerminationDate
-    '09:30:00', -- StartTime, format: 'HH:MM:SS'
+    '9:30 AM', 
     0 -- ActiveEmployee
 ),
 (
@@ -111,7 +134,7 @@ VALUES
     '1337', -- Extension
     '2016-09-01 8:00:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     NULL, -- TerminationDate
-    '09:30:00', -- StartTime, format: 'HH:MM:SS'
+    '9:30 AM', 
     1 -- ActiveEmployee
 ),
 (
@@ -124,7 +147,7 @@ VALUES
     '2233', -- Extension
     '2010-04-01 8:00:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     NULL, -- TerminationDate
-    '08:30:00', -- StartTime, format: 'HH:MM:SS'
+    '8:30 AM', 
     1 -- ActiveEmployee
 ),
 (
@@ -137,7 +160,7 @@ VALUES
     '3131', -- Extension
     '2015-06-01 8:00:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     NULL, -- TerminationDate
-    '09:00:00', -- StartTime, format: 'HH:MM:SS'
+    '9:00 AM', 
     1 -- ActiveEmployee
 )
 ,
@@ -151,7 +174,7 @@ VALUES
     '8541', -- Extension
     '2010-04-01 8:00:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     NULL, -- TerminationDate
-    '08:30:00', -- StartTime, format: 'HH:MM:SS'
+    '8:30 AM', 
     1 -- ActiveEmployee
 )
 ,
@@ -165,6 +188,6 @@ VALUES
     '4232', -- Extension
     '2008-05-01 8:00:00', -- HireDate, format: 'YYYY-MM-DD HH:MM:SS' 
     NULL, -- TerminationDate
-    '08:00:00', -- StartTime, format: 'HH:MM:SS'
+    '8:00 AM', 
     1 -- ActiveEmployee
 )

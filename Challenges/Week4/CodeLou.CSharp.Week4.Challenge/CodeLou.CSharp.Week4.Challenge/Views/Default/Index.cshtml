@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CodeLou.CSharp.Week4.Challenge.Models.Employee>
+
+@{
+    ViewBag.Title = "All Employees";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "FirstName" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "LastName" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "P.PositionName" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "D.DepartmentName" })
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.EMail) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "EMail" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Phone" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Extension) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Extension" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "StartTime" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveEmployee) <br />@Html.ActionLink("sort", "Index", new { OrderBy = "ActiveEmployee" })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Extension)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActiveEmployee)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
