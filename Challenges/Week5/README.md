@@ -15,6 +15,7 @@ Here's what I've completed:
 * The create view.
 
 Here's what I need you to complete for me:
+* Finish the create method for creating a new employee.
 * Create the view and method for seeing the details of an employee.
 * Create the view and mothods for deleting an employee. 
 * Enable sorting on the index view, so we can easily sort our employees.
