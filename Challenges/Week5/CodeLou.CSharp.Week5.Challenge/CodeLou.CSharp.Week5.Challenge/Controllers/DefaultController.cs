@@ -141,8 +141,9 @@ namespace CodeLou.CSharp.Week5.Challenge.Controllers
         [HttpPost]
         public ActionResult Create(Employee employee)
         {
+            // Hint: This method will be similar to the update method.
             // Hint: for now set the Position and Department to Id 1
-
+            
             // TODO: Create employee from form submission, redirect to list
             return View();
         }        
