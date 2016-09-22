@@ -21,17 +21,6 @@
             @if (ViewBag.EnableSorting)
             { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "LastName", OrderDirection = ViewBag.OrderDirection }) }
         </th>        
-        @* TODO: Bonus - Join another table. Uncomment these lines for this bonus*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.PositionName)
-            @if (ViewBag.EnableSorting)
-            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "P.PositionName", OrderDirection = ViewBag.OrderDirection }) }
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-            @if (ViewBag.EnableSorting)
-            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "D.DepartmentName", OrderDirection = ViewBag.OrderDirection }) }
-        </th>*@        
         <th>
             @Html.DisplayNameFor(model => model.EMail) 
             @if (ViewBag.EnableSorting)
@@ -68,13 +57,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
-        @*Bonus - Join another table. Uncomment these lines for this bonus*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.PositionName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentName)
-        </td>*@       
         <td>
             @Html.DisplayFor(modelItem => item.EMail)
         </td>

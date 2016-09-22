@@ -141,6 +141,9 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\Edit.cshtml" />
     <Content Include="Views\Default\Create.cshtml" />
+    <Content Include="Views\Default\Details.cshtml" />
+    <Content Include="Views\Default\Error.cshtml" />
+    <Content Include="Views\Default\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
