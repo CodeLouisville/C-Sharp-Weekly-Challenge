@@ -4,7 +4,7 @@
 
 ## The problem:
 I want to create a simple MVC application that Creates, Reads, Updates, and Deletes employees for our hr department at FakeCo. 
-I've started to work on it but have only half way finished it before getting pulled away on another project. 
+I've started to work on it but got pulled away to work on another project. 
 I would like you to finish it for me. (I guess I'm passing the buck?)
 
 Here's what I've completed:
