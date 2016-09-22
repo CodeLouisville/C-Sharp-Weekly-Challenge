@@ -1,14 +1,14 @@
 ﻿using CodeLou.CSharp.Week5.Challenge.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace CodeLou.CSharp.Week5.Challenge
+namespace CodeLou.CSharp.Week5.Challenge.Data
 {
-    public class SqlRepository
+    public class MySqlRepository
     {
         /// <summary>
         /// Normally it is bad form to pass in a SQL statements directly to your repository methods, but this if for demonstration purposes.
@@ -17,10 +17,10 @@ namespace CodeLou.CSharp.Week5.Challenge
         /// </summary>
         private string _ConnectionString;
         /// <summary>
-        /// Instantiate a new SqlRepository class to make available methods to CRUD to a Database
+        /// Instantiate a new MySqlRepository class to make available methods to CRUD to a Database
         /// </summary>
-        /// <param name="ConnectionString">Connection to localdb file or sql server</param>
-        public SqlRepository(string ConnectionString)
+        /// <param name="ConnectionString">Connection to mysql server</param>
+        public MySqlRepository(string ConnectionString)
         {
             _ConnectionString = ConnectionString;
         }
@@ -33,10 +33,10 @@ namespace CodeLou.CSharp.Week5.Challenge
         public void DeleteEmplyee(string DeleteStatement)
         {
             // Connection to your SQL server, MySql, MsSql, Local MDF File
-            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(_ConnectionString))
             {
                 // The SQL command you want to run on your server to get data back
-                using (SqlCommand command = new SqlCommand(DeleteStatement, connection))
+                using (MySqlCommand command = new MySqlCommand(DeleteStatement, connection))
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -51,10 +51,10 @@ namespace CodeLou.CSharp.Week5.Challenge
         public void CreateEmployee(string InsertStatement)
         {
             // Connection to your SQL server, MySql, MsSql, Local MDF File
-            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(_ConnectionString))
             {
                 // The SQL command you want to run on your server to get data back
-                using (SqlCommand command = new SqlCommand(InsertStatement, connection))
+                using (MySqlCommand command = new MySqlCommand(InsertStatement, connection))
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -71,10 +71,10 @@ namespace CodeLou.CSharp.Week5.Challenge
         public void UpdateEmployee(string UpdateStatement)
         {
             // Connection to your SQL server, MySql, MsSql, Local MDF File
-            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(_ConnectionString))
             {
                 // The SQL command you want to run on your server to get data back
-                using (SqlCommand command = new SqlCommand(UpdateStatement, connection))
+                using (MySqlCommand command = new MySqlCommand(UpdateStatement, connection))
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -94,13 +94,13 @@ namespace CodeLou.CSharp.Week5.Challenge
             Employee employee = new Employee();
 
             // Connection to your SQL server, MySql, MsSql, Local MDF File
-            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(_ConnectionString))
             {
                 // The SQL command you want to run on your server to get data back
-                using (SqlCommand command = new SqlCommand(Where, connection))
+                using (MySqlCommand command = new MySqlCommand(Where, connection))
                 {
                     // The adapter that is responsible for connecting to the database and getting the data
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
                         // This is the variable that will contain all of your data returned to you
                         DataSet dataSet = new DataSet();
@@ -142,22 +142,7 @@ namespace CodeLou.CSharp.Week5.Challenge
                             {
                                 employee.TerminationDate = Convert.ToDateTime(row["TerminationDate"]);
                             }
-
-                            // is the table joined?, remember relational databased store additional data in other tables. If we join
-                            // our employee on the Department table and Position table then we get that information to display
-
-                            #region Bonus - Joining another table
-                            // TODO: Bonus - Joining another table. Uncomment these lines for this bonus
-                            /*if (row["DepartmentName"] != DBNull.Value)
-                            {
-                                employee.DepartmentName = row["DepartmentName"].ToString();
-                            }
-
-                            if (row["PositionName"] != DBNull.Value)
-                            {
-                                employee.PositionName = row["PositionName"].ToString();
-                            }*/
-                            #endregion
+                            
 
                             #endregion
                         }
@@ -181,13 +166,13 @@ namespace CodeLou.CSharp.Week5.Challenge
             List<Employee> allEmployees = new List<Employee>();
 
             // Connection to your SQL server, MySql, MsSql, Local MDF File
-            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(_ConnectionString))
             {
                 // The SQL command you want to run on your server to get data back
-                using (SqlCommand command = new SqlCommand(Where, connection))
+                using (MySqlCommand command = new MySqlCommand(Where, connection))
                 {
                     // The adapter that is responsible for connecting to the database and getting the data
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
                         // This is the variable that will contain all of your data returned to you
                         DataSet dataSet = new DataSet();
@@ -232,22 +217,6 @@ namespace CodeLou.CSharp.Week5.Challenge
                                     employee.TerminationDate = Convert.ToDateTime(row["TerminationDate"]);
                                 }
 
-                                #region Bonus - Joining another table
-                                // is the table joined?, remember relational databased store additional data in other tables. If we join
-                                // our employee on the Department table and Position table then we get that information to display
-
-                                // TODO: Bonus - Joining another table. Uncomment these lines for this bonus
-                                /*if (row["DepartmentName"] != DBNull.Value)
-                                {
-                                    employee.DepartmentName = row["DepartmentName"].ToString();
-                                }
-
-                                if (row["PositionName"] != DBNull.Value)
-                                {
-                                    employee.PositionName = row["PositionName"].ToString();
-                                }*/
-                                #endregion
-
                                 // add the employee to the list of employees
                                 allEmployees.Add(employee);
                             }
@@ -259,6 +228,5 @@ namespace CodeLou.CSharp.Week5.Challenge
 
             return allEmployees;
         }
-        
     }
 }

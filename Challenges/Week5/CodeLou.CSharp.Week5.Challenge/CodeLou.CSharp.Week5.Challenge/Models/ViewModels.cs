@@ -70,15 +70,20 @@ namespace CodeLou.CSharp.Week5.Challenge.Models
         public string StartTime { get; set; }
 
         [Required]
+        [Display(Name = "Active Employee")]
         public bool ActiveEmployee { get; set; }
 
-        // joined properties
-        [Display(Name = "Department")]
-        public string DepartmentName { get; set; }
+        #region Bonus - Joining another table
+        // TODO: Bonus - Joining another table. Uncomment these lines for this bonus
+        //[Display(Name = "Department")]
+        //[ScaffoldColumn(false)]
+        //public string DepartmentName { get; set; }
 
-        [Display(Name = "Position")]
-        public string PositionName { get; set; }
-    }    
+        //[Display(Name = "Position")]
+        //[ScaffoldColumn(false)]
+        //public string PositionName { get; set; }
+        #endregion
+    }
     public class Floor
     {
         [ScaffoldColumn(false)]
