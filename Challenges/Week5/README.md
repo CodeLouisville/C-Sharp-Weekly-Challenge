@@ -17,13 +17,14 @@ Here's what I've completed:
 Here's what I need you to complete for me:
 * Finish the create method for creating a new employee.
 * Create the view and method for seeing the details of an employee.
-* Create the view and mothods for deleting an employee. 
+* Create the view and methods for deleting an employee. 
 * Enable sorting on the index view, so we can easily sort our employees.
 
 Here's what we have left, but not pressing. (a.k.a bonus)
-* Install a copy of MySql or Microsoft SQL Express (links provided) on your local computer or server.
+* Install a copy of MySql or Microsoft SQL Express (links provided) on your local computer or server and switch the app over to use a server instead of the localdb file. I have provided SQL scripts for both MySql and MsSql to populate the database with data.
 * There are more tables that contain more information about the employee that we aren't using. Join (bring in related data) the employee table with the Department and / or Position table and display that information in the list view.
   * Most of the code is already written, you just have to uncomment it out and finish what I've started.
+  * Implement error handling on the methods that interact with the database, so if something fails make sure it's handled gracefully.
 
 ## Directions:
 Right now we're working from a local database file, so you shouldn't need to download any server software.
