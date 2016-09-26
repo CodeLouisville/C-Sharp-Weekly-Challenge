@@ -56,7 +56,7 @@ namespace CodeLou.CSharp.Week2.Challenge
                 for (var i = iNumSeconds; i > 0; i--)
                 {
                     Console.WriteLine(i);
-                    System.Threading.Thread.Sleep(1000); //<-- Pause execution for one second.
+                    System.Threading.Thread.Sleep(1000); //<-- Pause execution for one full second.
                 }
                 Console.WriteLine("LIFTOFF!");
             }
