@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CodeLou.CSharp.Week5.Challenge.Models.Employee>
+
+@{
+    ViewBag.Title = "All Employees";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName) 
+            @if (ViewBag.EnableSorting)
+            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "FirstName", OrderDirection = ViewBag.OrderDirection }) }
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName) 
+            @if (ViewBag.EnableSorting)
+            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "LastName", OrderDirection = ViewBag.OrderDirection }) }
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.EMail) 
+            @if (ViewBag.EnableSorting)
+            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "EMail", OrderDirection = ViewBag.OrderDirection }) }
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone) 
+            @if (ViewBag.EnableSorting)
+            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Phone", OrderDirection = ViewBag.OrderDirection }) }
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Extension) 
+            @if (ViewBag.EnableSorting)
+            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "Extension", OrderDirection = ViewBag.OrderDirection }) }
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime) 
+            @if (ViewBag.EnableSorting)
+            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "StartTime", OrderDirection = ViewBag.OrderDirection }) }
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveEmployee) 
+            @if (ViewBag.EnableSorting)
+            { <br />@Html.ActionLink("sort", "Index", new { OrderBy = "ActiveEmployee", OrderDirection = ViewBag.OrderDirection }) }
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Extension)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActiveEmployee)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
