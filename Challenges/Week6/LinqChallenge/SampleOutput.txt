@@ -1,0 +1,90 @@
+﻿Read 8107 airports
+Read 6048 airlines
+Read 67663 routes
+
+=========================
+What are the airports in Louisville?
+Bowman Fld(Louisville, United States) [LOU/KLOU]
+Louisville International Airport(Louisville, United States) [SDF/KSDF]
+
+=========================
+What is the Latitude/Longitude of KSDF?
+lat: 38.17 long: -85.74
+
+=========================
+How many routes originate in in louisville?
+41
+
+=========================
+How many routes terminate in Louisville?
+42
+
+=========================
+Give me a list of Countries and how many airports in each country, as long as they have more than 100 airports?
+Canada: 435
+Germany: 321
+United States: 1697
+United Kingdom: 210
+South Africa: 103
+France: 233
+Australia: 263
+Argentina: 103
+Japan: 131
+Brazil: 213
+Russia: 249
+India: 140
+Indonesia: 114
+China: 219
+
+=========================
+Of the flights that leave Louisville, where do they go and which airline? I want sorted Airport Names, Airline
+Baltimore Washington Intl AirTran Airways
+Baltimore Washington Intl Southwest Airlines
+Charlotte Douglas Intl American Airlines
+Charlotte Douglas Intl US Airways
+Chicago Midway Intl AirTran Airways
+Chicago Midway Intl Southwest Airlines
+Chicago Ohare Intl American Airlines
+Chicago Ohare Intl United Airlines
+Chicago Ohare Intl US Airways
+Cleveland Hopkins Intl United Airlines
+Dallas Fort Worth Intl American Airlines
+Dallas Fort Worth Intl US Airways
+Denver Intl United Airlines
+Denver Intl Southwest Airlines
+Detroit Metro Wayne Co Delta Air Lines
+George Bush Intercontinental United Airlines
+Hartsfield Jackson Atlanta Intl Air France
+Hartsfield Jackson Atlanta Intl Delta Air Lines
+Hartsfield Jackson Atlanta Intl AirTran Airways
+Hartsfield Jackson Atlanta Intl KLM Royal Dutch Airlines
+Hartsfield Jackson Atlanta Intl Virgin Atlantic Airways
+Hartsfield Jackson Atlanta Intl Southwest Airlines
+John F Kennedy Intl Delta Air Lines
+La Guardia American Airlines
+La Guardia Delta Air Lines
+La Guardia US Airways
+Mc Carran Intl Southwest Airlines
+Miami Intl American Airlines
+Miami Intl US Airways
+Minneapolis St Paul Intl Delta Air Lines
+Newark Liberty Intl United Airlines
+Orlando Intl Delta Air Lines
+Orlando Intl AirTran Airways
+Orlando Intl Southwest Airlines
+Philadelphia Intl American Airlines
+Philadelphia Intl US Airways
+Phoenix Sky Harbor Intl Southwest Airlines
+Ronald Reagan Washington Natl American Airlines
+Ronald Reagan Washington Natl US Airways
+Tampa Intl Southwest Airlines
+Washington Dulles Intl United Airlines
+
+=========================
+Which 5 airports are have the most flights taking off? (and how many flights)
+I want airport name and number of flights.
+Hartsfield Jackson Atlanta Intl 915
+Chicago Ohare Intl 558
+Capital Intl 535
+Heathrow 527
+Charles De Gaulle 524
