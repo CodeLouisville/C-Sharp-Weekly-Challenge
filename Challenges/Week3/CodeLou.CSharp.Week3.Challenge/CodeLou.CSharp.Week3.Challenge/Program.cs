@@ -31,7 +31,7 @@ namespace CodeLou.CSharp.Week3.Challenge
 			// Task 4:
 			// We want our application to load data and to save data. The process for reminders has already been created. You will need to do the same thing
 			// for the other data types.
-			var reminderRepository = new ReminderRepisitory(); 
+			var reminderRepository = new ReminderRepository(); 
 			if (File.Exists("Reminders.json")) //Note: these files are created in the same folder as your .exe
 				//Note: What happens when this file is improperly formatte? Can you handle this case?
 				reminderRepository.LoadFromJson(File.ReadAllText("Reminders.json"));
